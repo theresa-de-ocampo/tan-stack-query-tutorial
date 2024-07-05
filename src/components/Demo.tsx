@@ -15,6 +15,7 @@ export default function Demo() {
   const { data: todos, isLoading } = useQuery({
     queryFn: () => fetchTodos(),
     queryKey: ["todos"]
+    // staleTime: Infinity
   });
 
   const { mutateAsync: addTodoMutation } = useMutation({
