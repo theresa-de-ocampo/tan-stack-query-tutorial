@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 // * APIs
-import { addTodo, fetchTodos } from "../api";
+import { addTodo, fetchTodos } from "../../api";
 
 // * Components
-import TodoCard from "./TodoCard";
+import TodoCard from "./TodoItem";
 
 export default function Demo() {
   const [title, setTitle] = useState("");
@@ -26,11 +26,7 @@ export default function Demo() {
   });
 
   if (isLoading) {
-    return (
-      <main>
-        <p>Loading ...</p>
-      </main>
-    );
+    return <p>Loading ...</p>;
   }
 
   async function submit() {

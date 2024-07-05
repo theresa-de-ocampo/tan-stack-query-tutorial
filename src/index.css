@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 8px;
 }
 
 code {
@@ -12,10 +13,18 @@ code {
     monospace;
 }
 
-main {
-  padding: 8px;
-}
-
 header {
   margin-bottom: 4px;
+}
+
+nav {
+  padding: 10px 0;
+}
+
+nav > a {
+  margin: 4px 8px;
+}
+
+main {
+  padding-top: 10px;
 }

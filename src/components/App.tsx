@@ -1,6 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Demo from "./Demo";
-import { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// * Components
+import Menu from "./0-generic/Menu";
+import ErrorPage from "./0-generic/ErrorPage";
+import Overview from "./1-overview/Overview";
+import InfiniteScroll from "./2-infinite-scroll/InfiniteScroll";
+
+// * Constants
+import ROUTES from "../common/constants/routes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -11,20 +19,27 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // This will cause the Demo component to unmount, and remount
-  // By default, tan-stack-query will always make a request
-  const [showPage, setShowPage] = useState(true);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Menu />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: ROUTES.OVERVIEW,
+          element: <Overview />
+        },
+        {
+          path: ROUTES.INFINITE_SCROLL,
+          element: <InfiniteScroll />
+        }
+      ]
+    }
+  ]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main>
-        <button onClick={() => setShowPage((prevValue) => !prevValue)}>
-          Toggle
-        </button>
-        <hr />
-
-        {showPage && <Demo />}
-      </main>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }
